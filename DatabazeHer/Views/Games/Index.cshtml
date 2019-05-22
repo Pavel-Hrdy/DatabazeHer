@@ -1,0 +1,45 @@
+﻿@using DataHer.Model
+@model List<Game>
+
+    @{
+        ViewBag.Title = "Index";
+
+
+    }
+
+    <h1>Výpis her v databázi</h1>
+
+    <div class="clearfix"></div>
+
+    <table class="table table-striped table-dark  table-bordered">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Id</th>
+                <th>Název hry</th>
+                <th>Vývojář</th>
+                <th>Ukázka</th>
+                <th>Rok vydání</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Game g in Model)
+            {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(g.ImageName))
+                    {
+                        <img src="@Url.Content("~/uploads/game/" + g.ImageName)" />
+                    }
+                </td>
+                <td>@g.Id</td>
+                <td class = "cover-container">@Html.ActionLink(g.Name, "Detail", "Games", new { id = g.Id }, new { title = g.Name }) </td>
+                <td>@Html.ActionLink(g.Developer, "DetailDeveloper", "Games", new { id = g.Id }, new { title = g.Developer })</td>
+                <td>@Html.ActionLink(g.Name, "Video", "Games", new { id = g.Id }, new { title = g.Video })</td>
+                <td>@g.PublishedYear</td>
+
+            </tr>
+            }
+        </tbody>
+    </table>

@@ -1,0 +1,36 @@
+﻿@model DataHer.Model.GameCategory
+@{
+    ViewBag.Title = "EditCategory";
+}
+
+<h2>Editace Kategorie</h2>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("Update", "Category", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+
+
+
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label>Název žánru</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+    </div>
+
+   
+    <div class="col-sm-12">
+        <ul id="vRadku" class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link activebtn btn-danger d-inline" href="@Url.Action("Delete","Category")">Smazat žánr</a>
+                <button type="submit" class="btn btn-primary ">Upravit žánr</button>
+            </li>
+        </ul>
+         </div>
+        }
+
+

@@ -1,0 +1,113 @@
+﻿@using DataHer.Model
+@model List<Game>
+
+@{
+    ViewBag.Title = "Index";
+
+
+}
+<!-- Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="modal-body" id="modalContent">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1>Výpis her v databázi</h1>
+
+<div class="clearfix"></div>
+
+
+
+@using (Ajax.BeginForm("Search", new AjaxOptions() { UpdateTargetId = "dynamicContent", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="form-group row" id="odsaz">
+        <input type="text" class="form-control" placeholder="Vyhledat hru" name="phrase" />
+        <input type="submit" value="Hledat" class="btn btn-primary mb-2" />
+    </div>
+}
+
+
+<ul id="vRadku" class="nav nav-pills">
+    <li class="nav-item">
+        @if (ViewBag.Categories != null)
+        {
+            foreach (GameCategory gc in ViewBag.Categories)
+            {
+                <a class="nav-link active d-inline" href="@Url.Action("Category", "Games", new { id = gc.Id})">@gc.Name</a>
+            }
+        }
+    </li>
+</ul>
+
+
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Id</th>
+            <th>Název hry</th>
+            <th>Vývojář</th>
+            <th>Ukázka</th>
+            <th>Rok vydání</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Game g in Model)
+        {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(g.ImageName))
+                {
+                    <img src="@Url.Content("~/uploads/game/" + g.ImageName)" />
+                }
+            </td>
+            <td>@g.Id</td>
+            <td> @Ajax.ActionLink(g.Name, "Detail", new { id = g.Id }, new AjaxOptions() { UpdateTargetId = "modalContent", InsertionMode = InsertionMode.Replace, OnBegin = "openModalWindow" })</td>
+            <td>@Ajax.ActionLink(g.Developer, "DetailDeveloper", new { id = g.Id }, new AjaxOptions() { UpdateTargetId = "modalContent", InsertionMode = InsertionMode.Replace, OnBegin = "openModalWindow" })</td>
+            <td>@Html.ActionLink(g.Name, "Video", "Games", new { id = g.Id }, new { title = g.Video })</td>
+            <td>@g.PublishedYear</td>
+
+        </tr>
+        }
+    </tbody>
+
+
+
+</table>
+<div class="clearfix"></div>
+
+@if (ViewBag.Pages != null)
+{
+    <ul class="pagination">
+
+        @for (int i = 1; i <= ViewBag.Pages; i++)
+        {
+            <li class="@(ViewBag.CurrentPage == i ? "active" : "")"><a class="page-link" href="@Url.Action("Index", "Games", new { page = i })">@i</a></li>
+        }
+
+
+    </ul>
+}
+<script type="text/javascript">
+    function openModalWindow() {
+        $('#myModal').modal({
+            show: true
+        });
+    }
+
+</script>

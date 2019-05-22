@@ -1,0 +1,67 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Můj web</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/cover.css")" rel="stylesheet">
+
+
+</head>
+<body class="text-center">
+
+    <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
+       
+        <header class="masthead mb-auto">
+
+            <div class="inner">
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                    <a class="nav-link" href="@Url.Action("Index", "Games")">Výpis her</a>
+                    <a class="nav-link" href="@Url.Action("Index", "Login", new { area = "Admin"})">Vstup do databáze</a>
+
+                </nav>
+
+            </div>
+        </header>
+        
+
+        @if (TempData["message-success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                @TempData["message-success"]
+            </div>
+        }
+
+        @RenderBody()
+
+        <main role="main" class="inner cover">
+
+
+
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+                <p>Jedná se o školní projekt na TNPW2</p>
+                <p>©David Vondráček</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+</body>
+</html>

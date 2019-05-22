@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/MicrosoftAjax.js"></script>
+    <script src="~/Scripts/MicrosoftMvcAjax.js"></script>
+   
+    <link href="@Url.Content("~/Content/detail.css")" rel="stylesheet">
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <div class="navbar-header">
+
+                @Html.ActionLink("Herna", "Index", "Home", null, new { @class = "navbar-brand" })
+                @{Html.RenderAction("Index", "Menu"); }
+            </div>
+            <div class="navbar-collapse collapse">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content" id="dynamicContent">
+        @RenderBody()
+        <hr />
+
+
+    </div>
+
+    <footer class="container body-content">
+        <div class="inner">
+            <p>Jedná se o školní projekt na TNPW2</p>
+            <p>©David Vondráček</p>
+        </div>
+    </footer>
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="DataHer" namespace="DataHer.Model">
+
+  <class name="Game" table="game">
+    <id name="Id" column="id">
+      <generator class="native" />
+    </id>
+    <property name="Name" column="name" />
+    <property name="Developer" column="developer" />
+    <property name="PublishedYear" column="published_year" />
+    <property name="Video" column="video" />
+    <property name="Description" column="description" />
+    <property name="DescriptionDeveloper" column="descriptionDeveloper" />
+    <property name="ImageName" column="image_name" />
+    <many-to-one name="Category" column="category_id" foreign-key="category_id" />
+
+  </class>
+
+</hibernate-mapping>

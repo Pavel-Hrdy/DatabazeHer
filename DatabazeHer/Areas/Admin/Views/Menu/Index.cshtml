@@ -1,0 +1,24 @@
+﻿@model DataHer.Model.HernaUser
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+@if (Model.Role.Identificator == "spravce")
+{
+    <a href="@Url.Action("Index", "Games")" class="navbar-brand">Správa her</a>
+
+
+
+}
+else if (Model.Role.Identificator == "hrac")
+{
+    <a href="@Url.Action("Index", "Games")" class="navbar-brand">Hry</a>
+}
+
+<a href="@Url.Action("Logout", "Login")" class="navbar-brand">Logout</a>
+
+
+
+
+

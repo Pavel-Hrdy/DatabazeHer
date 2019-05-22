@@ -1,0 +1,84 @@
+﻿@model DataHer.Model.Game
+@{
+
+
+    ViewBag.Title = "Create";
+}
+
+<h2>Nová hra</h2>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("Add", "Games", FormMethod.Post, new { @class = "form-group", enctype = "multipart/form-data" }))
+{
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label>Název hry</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label>Vývojář</label>
+            @Html.TextBoxFor(x => x.Developer, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Developer)
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label>Popis Developera</label>
+            @Html.TextAreaFor(x => x.DescriptionDeveloper, new { @class = "form-control formatedtext" })
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label>Rok vydání</label>
+            @Html.TextBoxFor(x => x.PublishedYear, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.PublishedYear)
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label>Popis</label>
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control formatedtext" })
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label>URL videa</label>
+            @Html.TextBoxFor(x => x.Video, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label>Kategorie</label>
+            @Html.DropDownList("categoryId", new SelectList(ViewBag.Categories, "Id", "Name"), new { @class = "form-control" })
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label>Obrázek</label>
+            <input type="file" name="picture" />
+
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Vytvořit hru</button>
+
+}
+
+
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<script>tinymce.init({ selector: '.formatedtext' });</script>

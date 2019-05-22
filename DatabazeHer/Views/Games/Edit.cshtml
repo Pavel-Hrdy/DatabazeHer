@@ -1,0 +1,84 @@
+﻿@model DataHer.Model.Game
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>@Model.Name  - Editace</h2>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("Update", "Games", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.ImageName)
+
+
+    <div class="form-group">
+        <label>Název hry</label>
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Vývojář</label>
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.Developer, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Developer)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Popis Developera</label>
+        <div class="col-sm-12">
+            @Html.TextAreaFor(x => x.DescriptionDeveloper, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Rok vydání</label>
+        <div class="col-sm-12">
+            @Html.TextBoxFor(x => x.PublishedYear, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.PublishedYear)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Popis</label>
+        <div class="col-sm-12">
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control formatedtext" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label>Kategorie</label>
+        <div class="col-sm-12">
+            @Html.DropDownList("categoryId", new SelectList(ViewBag.Categories, "Id", "Name", Model.Category.Id), new { @class = "form-control" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Obrázek</label>
+        <div class="col-sm-12">
+            <input type="file" name="picture" />
+            @if (!string.IsNullOrEmpty(Model.ImageName))
+            {
+                <img src="@Url.Content("~/uploads/game" + Model.ImageName)" />
+            }
+
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Upravit hru</button>
+
+}
+
+
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<script>tinymce.init({ selector: '.formatedtext' });</script>
+

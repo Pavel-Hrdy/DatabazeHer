@@ -1,0 +1,19 @@
+﻿@model DataHer.Model.Game
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail hry @Model.Name</h2>
+
+<p>
+    Developer: @Model.Developer
+</p>
+
+<p>
+    Rok Vydáni: @Model.PublishedYear
+</p>
+
+
+    @Html.Raw(Model.Description)
+
+

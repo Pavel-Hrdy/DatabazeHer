@@ -1,0 +1,70 @@
+﻿@model DataHer.Model.HernaUser
+@{
+    ViewBag.Title = "Registrovat";
+    Layout = null;
+
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Herna - Registrace</title>
+
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="@Url.Content("~/Content/signin.css")" rel="stylesheet">
+</head>
+<body class="text-center" id="registrace">
+
+    @Html.ValidationSummary()
+    @using (Html.BeginForm("Add", "Login", FormMethod.Post, new { @class = "form-signin", encrypte = "multipart/form-data" }))
+    {
+        <div class="text-center" >
+            @if (TempData["error"] != null)
+            {
+                <p>@TempData["error"]</p>
+            }
+
+            <h1 class="h3 mb-3 font-weight-normal">Registrace</h1>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label for="exampleJmeno">Jméno</label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Jméno" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label for="examplePrijmeni">Přijmení</label>
+                    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", @placeholder = "Příjmení" })
+                    @Html.ValidationMessageFor(x => x.Surname)
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label for="exampleLogin">Uživatelské jméno</label>
+                    @Html.TextBoxFor(x => x.Login, new { @class = "form-control", @placeholder = "Uživatelské jméno" })
+                    @Html.ValidationMessageFor(x => x.Login)
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label for="exampleHeslo">Heslo</label>
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @placeholder = "Zde zadejte heslo", @type = "password" })
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+            </div>
+            <div class="checkbox mb-3">
+
+                <label>
+                    Už jste registrovaní? <a href="@Url.Action("Index", "Login")" role="button" class="btn btn-success">Přihlašte se</a>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Zaregistrovat</button>
+        </div>
+    }
+</body>
+</html>

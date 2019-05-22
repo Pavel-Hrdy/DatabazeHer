@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Herna - Login</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="@Url.Content("~/Content/signin.css")" rel="stylesheet">
+
+
+</head>
+<body class="text-center">
+
+    @if (TempData["error"] != null)
+    {
+        <p>@TempData["error"]</p>
+    }
+
+    @using (Html.BeginForm("SignIn", "Login", FormMethod.Post, new { @class = "form-signin" }))
+    {
+        <h1 class="h3 mb-3 font-weight-normal">Přihlašte se prosím</h1>
+        <label for="inputEmail" class="sr-only">Login</label>
+        <input type="text" id="inputEmail" class="form-control" placeholder="Uživatelské jméno" name="login">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Heslo">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Přihlášení</button>
+        <a href="@Url.Action("Registrace", "Login", new { area = "" })" role="button" class="btn btn-lg btn-warning btn-block">Registrace</a>
+        <a href="@Url.Action("Index", "Games", new { area = "" })" role="button" class="btn btn-lg btn-success btn-block">Zpět na index</a>
+
+
+    }
+
+
+
+</body>
+</html>
+
+
